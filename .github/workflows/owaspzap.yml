@@ -1,19 +1,29 @@
 name: OWASP ZAP Scan
 
 on:
-    push:
-        branches:
-            - owaspzap
+    push: # Trigger the scan when code is pushed
+        
 
 jobs:
     zap_scan:
         runs-on: windows-latest
+        name: Scan the web application
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
-            - name: Run ZAP scan
-              run: zap-cli --spider https://juice.shop.herokuapp.com/ && zap-cli --active scan http://juice-shop.herokuapp.com/
-              
+              with:
+                ref: master
+
+            - name: Run ZAP Baseline Scan
+              uses: zaproxy/action-baseline@v0.12.0
+              with:
+                target: 'https://juice-shop.herokuapp.com/#'
+                token: ${{secrets.GITHUB_TOKEN }}
+                docker_name:
+                    'ghrc.io/zaproxy/zaproxy:stable'
+                
+
+
 
 
 
