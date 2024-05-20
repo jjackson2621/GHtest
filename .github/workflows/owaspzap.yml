@@ -6,26 +6,13 @@ on:
 
 jobs:
     zap_scan:
-        runs-on: windows-latest
-        name: Scan the web application
+        runs-on: ubuntu-latest
+        name: Scan ZAP website
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-              with:
-                ref: master
-
-            - name: Run ZAP Baseline Scan
-              uses: zaproxy/action-baseline@v0.12.0
+            - name: ZAP scan
+              uses: zaproxy/action-baseline@v0.3.0
               with:
                 target: 'https://juice-shop.herokuapp.com/#'
-                token: ${{secrets.GITHUB_TOKEN }}
-                docker_name:
-                    'ghrc.io/zaproxy/zaproxy:stable'
-                
-
-
-
-
 
 
             
