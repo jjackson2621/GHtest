@@ -18,9 +18,6 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Run ZAP Baseline Scan
         run: npx zap-baseline.js -t https://juice-shop.herokuapp.com
 
@@ -29,7 +26,7 @@ jobs:
         with:
           name: zap-report
           path: zap-report.html
-          cmd_options: '-a'
+        
         
       
             
