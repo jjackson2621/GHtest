@@ -8,7 +8,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: GHtest
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.12.0
         with:
